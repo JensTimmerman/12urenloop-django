@@ -1,0 +1,17 @@
+django port of zeuswpi/12urenloop/dr.breaker/
+
+dependencies:
+python-django
+python-django-piston
+
+
+testing with:
+you can test the api with testcall.py
+see the scoreboard on /score/
+and make teams on /admin/
+
+api documentation:
+
+post something to /api/bootstrap will initialize the database with teams hardcoded in handlers.py (if the db is not empty
+put a mac address to /api/ will add 1point to the team that has this macaddress
+get /api/ will return json encoded list of teams, mac adresses and scores
