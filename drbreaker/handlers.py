@@ -19,11 +19,10 @@ class LapHandler(BaseHandler):
 
 	def create(self,request,post_slug):
 		""" 
-			creates initial configuration, put hardcoded teams here
+		creates initial configuration, put hardcoded teams here
 		"""
 		if post_slug  =="bootstrap":
 			if Team.objects:
-				return "DB not empty"
 				output = piston.utils.rc.DUPLICATE_ENTRY
 				output.write ("DB not empty!")
 				return output
@@ -32,17 +31,17 @@ class LapHandler(BaseHandler):
 				return piston.utils.rc.ALL_OK    #piston.utils.rc.CREATED
 
 	def update(self,request,*args, **kwargs):
-
+		"""
+		reads the input for a "mac" field, searches the team who has this mac addresss
+		and increments this teams score
+		"""
 		if request.content_type:
-
-			         		
 			data = request.data
             		mac = data['mac']
 			team = Team.objects.filter(macAddress=mac)[0]
 			team.score = team.score +1
 			team.save()
 			return piston.utils.rc.ALL_OK   
-
 		else:
 			print "bad request"
 			return piston.utils.rc.BAD_REQUEST
