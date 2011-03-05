@@ -1,12 +1,14 @@
 django port of zeuswpi/12urenloop/dr.breaker/
 
 dependencies:
-python-django
+python-django >= 1.2
 python-django-piston
 
 
-testing with:
 you can test the api with testcall.py
+or: 
+	curl -i -H "Content-Type: application/json" -X PUT -d '{"mac":"01:23:45:67:89:ab"}' http://127.0.0.1:8000/api/
+
 see the scoreboard on /score/
 and make teams on /admin/
 
@@ -15,3 +17,9 @@ api documentation:
 post something to /api/bootstrap will initialize the database with teams hardcoded in handlers.py (if the db is not empty
 put a mac address to /api/ will add 1point to the team that has this macaddress
 get /api/ will return json encoded list of teams, mac adresses and scores
+
+
+testserver running on http://atomatix.net:8000/
+admin login:
+user: admin
+login: admin
